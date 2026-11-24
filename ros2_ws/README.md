@@ -10,25 +10,20 @@ Ubuntu 24.04 + ROS 2 **Jazzy** con `ros_gz` (Gazebo Harmonic), `robot_state_publ
 (todo incluido en `ros-jazzy-desktop` + `ros-jazzy-ros-gz`). No hace falta instalar nada más.
 
 ## Compilar
+Desde la carpeta `ros2_ws` del proyecto (la carpeta puede tener espacios en la ruta):
 ```bash
-cd ros2_ws
 source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
 source install/setup.bash
 ```
 `--symlink-install` permite que el launch encuentre solo la carpeta del proyecto (`mundo/`, `modelos/`). Si compilas sin él,
-indica `escenario:=<ruta del proyecto>` o exporta `GENE_HAAS_DIR=<ruta del proyecto>`.
+indica `escenario:=<ruta del proyecto>` o exporta `GENE_HAAS_DIR=<ruta del proyecto>`. Solo hace falta volver a compilar
+después de actualizar el proyecto; para volver a arrancar basta con los dos `source` de cada terminal nueva.
 
 ## Lanzar
+Terminal 1, desde `ros2_ws`, con `/opt/ros/jazzy/setup.bash` e `install/setup.bash` cargados:
 ```bash
-# Terminal 1: escenario + robot + puente
 ros2 launch gene_haas_bringup gene_haas_tracer2.launch.py            # rviz:=true para RViz2, gui:=false sin ventana
-# Terminal 2: teleoperación por teclado (i = avanzar, , = retroceder, j/l = girar, k = parar)
-source /opt/ros/jazzy/setup.bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-# Validación automática de LiDAR y odometría: necesita el robot en el pasillo (no en la pose por defecto)
-ros2 launch gene_haas_bringup gene_haas_tracer2.launch.py x:=-4.0 y:=-0.2 yaw:=0.0   # terminal 1
-ros2 run gene_haas_bringup validar_capa1.py                                          # terminal 2 (tras source install/setup.bash)
 ```
 
 | Argumento | Por defecto | Qué hace |
@@ -47,6 +42,46 @@ usado por separado conserva como pose por defecto el pasillo principal, (-4.0, -
 la pared sur, unos 1.4 m antes de la abertura del tabique de vidrio y alineado con ella (abertura en y 0.29–1.49). Mirando al
 oeste: al avanzar (`i` en teleop) cruza la puerta hacia la sala de máquinas. Márgenes aproximados: 0.27 m a las mesas, 0.90 m a
 la pared sur y 0.32 m a la punta de la hoja abierta de la puerta. Cada equipo puede cambiarla con `x:=`, `y:=` y `yaw:=`.
+
+![Tracer2 en el punto 1, visto desde detrás: al fondo, la puerta de cristal y la sala de máquinas](../docs/img/punto1_salida.png)
+
+## Teleoperación desde el punto 1
+Con la simulación de la terminal 1 en marcha, en una terminal 2 (desde cualquier carpeta; `teleop_twist_keyboard` es un paquete
+de ROS 2, no del proyecto, así que basta con el entorno de Jazzy):
+```bash
+source /opt/ros/jazzy/setup.bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+Con el foco en la terminal 2: `i` avanzar, `,` retroceder, `j`/`l` girar, `k` parar, `q`/`z` subir/bajar la velocidad.
+Desde el punto 1, `i` lleva el robot recto hacia la puerta de cristal y a la sala de máquinas. Las órdenes llegan por `/cmd_vel`.
+
+## Validación del pasillo (`validar_capa1.py`)
+Comprueba el LiDAR y la odometría. **No funciona desde el punto 1**: necesita el robot en el pasillo de la sala de máquinas.
+1. Cierra la simulación que tengas abierta (`Ctrl+C` en la terminal 1 y espera a que vuelva el prompt).
+2. Terminal 1, desde `ros2_ws` con los dos `source` hechos, arranca con la pose del pasillo:
+   ```bash
+   ros2 launch gene_haas_bringup gene_haas_tracer2.launch.py x:=-4.0 y:=-0.2 yaw:=0.0
+   ```
+3. Terminal 2, desde `ros2_ws` (el validador es del proyecto, así que hacen falta los dos `source`):
+   ```bash
+   source /opt/ros/jazzy/setup.bash
+   source install/setup.bash
+   ros2 run gene_haas_bringup validar_capa1.py
+   ```
+Resultado esperado: `RESULTADO: TODO OK`. Desde (-4.0, -0.2) mirando al este, el LiDAR mide las paredes del sótano a 0°
+(7.66 m), +90° (5.12 m) y −90° (4.50 m) con tolerancia de 0.10 m; tras avanzar 0.3 m/s × 3 s y girar 0.5 rad/s × 2 s (tiempo
+simulado), `/odom` coincide con la pose real de Gazebo y la lectura frontal del LiDAR disminuye lo avanzado. Si el robot no
+está en esa pose, el script lo indica y termina con código 2.
+
+## Cerrar
+`Ctrl+C` primero en la terminal 2 (si está abierta) y después en la terminal 1. Gazebo tarda unos segundos en cerrarse; espera
+a que vuelva el prompt antes de arrancar otra vez. Al cerrar puede aparecer
+`[ERROR] [gz_servidor-1]: process has died [... exit code -11 ...]`: es el cierre del servidor de Gazebo Harmonic y no indica
+un problema; `ros2 launch` termina con código 0.
+
+Si el servidor de Gazebo termina por su cuenta (un fallo o una señal enviada solo a Gazebo, sin `Ctrl+C` en la terminal 1),
+el launch cierra el resto y `ros2 launch` termina con código 1 y el mensaje
+`el servidor de Gazebo terminó de forma inesperada con código ...`.
 
 ## Por qué el servidor renderiza por software
 En esta máquina virtual (GPU VMware SVGA3D) el sensor `gpu_lidar` de Gazebo devuelve el alcance mínimo (0.10 m) en todos
@@ -86,8 +121,3 @@ Coste: cada lectura del LiDAR renderiza el escenario completo en CPU. Factor de 
 
 Árbol TF: `odom → base_link → {base_footprint, rslidar_link, imu_link, rueda_*_Link, apoyo_*_Link}`.
 El frame `map` (y `map → odom`) lo publica el SLAM o la localización de cada equipo.
-
-## Validación (`validar_capa1.py`)
-Desde la pose del pasillo (-4.0, -0.2) (lanzar con `x:=-4.0 y:=-0.2 yaw:=0.0`): el LiDAR mide las paredes del sótano a 0° (7.66 m), +90° (5.12 m) y −90° (4.50 m) con tolerancia de 0.10 m;
-tras avanzar 0.3 m/s × 3 s y girar 0.5 rad/s × 2 s (tiempo simulado), `/odom` coincide con la pose real de Gazebo
-y la lectura frontal del LiDAR disminuye lo avanzado.

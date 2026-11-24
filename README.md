@@ -4,6 +4,8 @@ Simulador en Gazebo del taller Gene Haas de IQS, con el robot Tracer2 listo para
 
 El simulador no incluye mapeo, localización ni navegación: cada equipo los aporta con su propio software.
 
+¿Tenéis Ubuntu 24.04 pero todavía no habéis instalado ROS 2? Seguid la [guía de inicio](docs/GUIA_INICIO.md), que explica cada paso desde cero.
+
 ## Requisitos
 
 - Ubuntu 24.04. En Windows, podéis instalarlo en una máquina virtual de VirtualBox.
@@ -18,6 +20,8 @@ sudo apt install git python3-colcon-common-extensions ros-jazzy-desktop ros-jazz
 
 ## Clonar, compilar y arrancar
 
+Desde la carpeta donde queráis guardar el simulador:
+
 ```bash
 git clone https://github.com/alexllambrichcastells/socialtech-gene-haas-sim.git
 cd socialtech-gene-haas-sim/ros2_ws
@@ -29,9 +33,14 @@ ros2 launch gene_haas_bringup gene_haas_tracer2.launch.py
 
 Al iniciar la simulación, el Tracer2 aparece en el punto 1, la salida del circuito, en la sala de células, orientado hacia la puerta de cristal.
 
+![Tracer2 en el punto 1, visto desde detrás: al fondo, la puerta de cristal y la sala de máquinas](docs/img/punto1_salida.png)
+
+Para volver a arrancar no hace falta compilar: en una terminal nueva, desde `ros2_ws`, repetid los dos `source` y el `ros2 launch`. Para cerrar, pulsad `Ctrl+C` en la terminal del simulador.
+
 ## Más información
 
-En [`ros2_ws/README.md`](ros2_ws/README.md) encontraréis los tópicos del robot, la teleoperación por teclado y los ajustes para VirtualBox.
+- [`docs/GUIA_INICIO.md`](docs/GUIA_INICIO.md): instalación desde cero, descarga con ZIP, terminales y cierre.
+- [`ros2_ws/README.md`](ros2_ws/README.md): tópicos del robot, teleoperación por teclado, validación y ajustes para VirtualBox.
 
 ## Recursos de terceros
 
