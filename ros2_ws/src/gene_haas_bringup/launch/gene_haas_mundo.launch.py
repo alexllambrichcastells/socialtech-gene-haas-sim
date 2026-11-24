@@ -11,9 +11,11 @@
 - El mundo se carga sin modificar desde <escenario>/mundo/gene_haas.sdf y los modelos desde <escenario>/modelos.
   <escenario> se localiza solo (subiendo desde este archivo hasta encontrar mundo/gene_haas.sdf; funciona con
   `colcon build --symlink-install`) o con la variable GENE_HAAS_DIR o el argumento escenario:=<ruta>.
-- Cerrar el servidor cierra todo el launch.
+- Cerrar el servidor cierra todo el launch. Si el servidor termina por un fallo (y no por Ctrl+C en el launch),
+  ros2 launch devuelve un código distinto de 0.
 """
 import os
+import signal
 from pathlib import Path
 
 from launch import LaunchDescription
@@ -57,8 +59,29 @@ def lanzar(context):
         LogInfo(msg=f'Gene Haas: {mundo} | servidor con render por software: {software}'),
         AppendEnvironmentVariable('GZ_SIM_RESOURCE_PATH', str(escenario / 'modelos')),
         servidor, gui,
-        RegisterEventHandler(OnProcessExit(target_action=servidor, on_exit=[EmitEvent(event=Shutdown(reason='servidor de Gazebo cerrado'))])),
+        RegisterEventHandler(OnProcessExit(target_action=servidor, on_exit=al_cerrar_servidor)),
     ]
+
+
+def al_cerrar_servidor(evento, context):
+    """Cierra el launch cuando termina el servidor y distingue un fallo de un cierre normal.
+
+    - Cierre ya en marcha (Ctrl+C en la terminal del launch): no es un fallo, aunque el servidor salga con código
+      distinto de 0 (Gazebo Harmonic puede terminar con SIGSEGV al cerrarse). ros2 launch devuelve 0.
+    - El servidor termina solo con código 0: cierre normal del launch; ros2 launch devuelve 0.
+    - El servidor termina solo con otro código (fallo, SIGKILL, SIGINT enviado solo a Gazebo...): se lanza una
+      excepción para que ros2 launch cierre el resto y devuelva un código distinto de 0.
+    """
+    if context.is_shutdown:
+        return None
+    codigo = evento.returncode
+    if codigo == 0:
+        return [EmitEvent(event=Shutdown(reason='servidor de Gazebo cerrado'))]
+    try:
+        senal = f' ({signal.Signals(-codigo).name})' if codigo < 0 else ''
+    except ValueError:
+        senal = ''
+    raise RuntimeError(f'el servidor de Gazebo terminó de forma inesperada con código {codigo}{senal}')
 
 
 def generate_launch_description():
