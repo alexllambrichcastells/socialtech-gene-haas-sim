@@ -1,0 +1,197 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Entrenador de PLC de sobremesa (atrezo; modelo propio, solo primitivas, estático, sin lógica ni cableado). Medidas APROXIMADAS:
+       panel 0.45 x 0.30 m inclinado 20 grados hacia atrás sobre una base de 0.47 x 0.30 x 0.03 m; altura total ~0.32 m.
+       En la cara: carril DIN con CPU y 3 módulos de E/S, pilotos verde/ámbar/rojo, pulsadores de marcha (verde) y paro (rojo),
+       seta de emergencia y una fila de 16 bornas. Origen = centro de la base apoyada (pose z = altura del tablero);
+       +x local = hacia donde mira la cara de mandos (el alumno). Collision: caja envolvente simple (queda sobre la mesa). -->
+  <model name="gene_haas_entrenador_plc">
+    <static>true</static>
+    <link name="entrenador">
+      <visual name="base">
+        <pose>0 0 0.015 0 0 0</pose>
+        <geometry><box><size>0.30 0.47 0.03</size></box></geometry>
+        <material><ambient>0.22 0.23 0.25 1</ambient><diffuse>0.22 0.23 0.25 1</diffuse></material>
+      </visual>
+      <visual name="panel">
+        <pose>-0.0013 0.0000 0.1710 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.45 0.30</size></box></geometry>
+        <material><ambient>0.76 0.79 0.82 1</ambient><diffuse>0.76 0.79 0.82 1</diffuse></material>
+      </visual>
+      <visual name="soporte_1">
+        <pose>-0.085 0.2 0.16 0 0 0</pose>
+        <geometry><box><size>0.015 0.015 0.26</size></box></geometry>
+        <material><ambient>0.22 0.23 0.25 1</ambient><diffuse>0.22 0.23 0.25 1</diffuse></material>
+      </visual>
+      <visual name="soporte_2">
+        <pose>-0.085 -0.2 0.16 0 0 0</pose>
+        <geometry><box><size>0.015 0.015 0.26</size></box></geometry>
+        <material><ambient>0.22 0.23 0.25 1</ambient><diffuse>0.22 0.23 0.25 1</diffuse></material>
+      </visual>
+      <visual name="carril_din">
+        <pose>-0.0121 0.0000 0.2415 0 -0.3491 0</pose>
+        <geometry><box><size>0.008 0.40 0.035</size></box></geometry>
+        <material><ambient>0.70 0.71 0.73 1</ambient><diffuse>0.70 0.71 0.73 1</diffuse></material>
+      </visual>
+      <visual name="plc_cpu">
+        <pose>0.0123 -0.1200 0.2504 0 -0.3491 0</pose>
+        <geometry><box><size>0.06 0.10 0.10</size></box></geometry>
+        <material><ambient>0.18 0.42 0.44 1</ambient><diffuse>0.18 0.42 0.44 1</diffuse></material>
+      </visual>
+      <visual name="plc_cpu_display">
+        <pose>0.0064 -0.1200 0.2695 0 -0.3491 0</pose>
+        <geometry><box><size>0.003 0.06 0.025</size></box></geometry>
+        <material><ambient>0.55 0.85 0.55 1</ambient><diffuse>0.55 0.85 0.55 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_1">
+        <pose>0.0076 -0.0450 0.2487 0 -0.3491 0</pose>
+        <geometry><box><size>0.05 0.045 0.10</size></box></geometry>
+        <material><ambient>0.28 0.29 0.31 1</ambient><diffuse>0.28 0.29 0.31 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_1_leds">
+        <pose>-0.0017 -0.0450 0.2772 0 -0.3491 0</pose>
+        <geometry><box><size>0.003 0.03 0.012</size></box></geometry>
+        <material><ambient>0.20 0.85 0.25 1</ambient><diffuse>0.20 0.85 0.25 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_2">
+        <pose>0.0076 0.0050 0.2487 0 -0.3491 0</pose>
+        <geometry><box><size>0.05 0.045 0.10</size></box></geometry>
+        <material><ambient>0.28 0.29 0.31 1</ambient><diffuse>0.28 0.29 0.31 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_2_leds">
+        <pose>-0.0017 0.0050 0.2772 0 -0.3491 0</pose>
+        <geometry><box><size>0.003 0.03 0.012</size></box></geometry>
+        <material><ambient>0.20 0.85 0.25 1</ambient><diffuse>0.20 0.85 0.25 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_3">
+        <pose>0.0076 0.0550 0.2487 0 -0.3491 0</pose>
+        <geometry><box><size>0.05 0.045 0.10</size></box></geometry>
+        <material><ambient>0.28 0.29 0.31 1</ambient><diffuse>0.28 0.29 0.31 1</diffuse></material>
+      </visual>
+      <visual name="plc_modulo_3_leds">
+        <pose>-0.0017 0.0550 0.2772 0 -0.3491 0</pose>
+        <geometry><box><size>0.003 0.03 0.012</size></box></geometry>
+        <material><ambient>0.20 0.85 0.25 1</ambient><diffuse>0.20 0.85 0.25 1</diffuse></material>
+      </visual>
+      <visual name="piloto_1">
+        <pose>0.0271 -0.1800 0.1441 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.015</length></cylinder></geometry>
+        <material><ambient>0.10 0.85 0.15 1</ambient><diffuse>0.10 0.85 0.15 1</diffuse></material>
+      </visual>
+      <visual name="piloto_2">
+        <pose>0.0271 -0.1350 0.1441 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.015</length></cylinder></geometry>
+        <material><ambient>0.95 0.75 0.05 1</ambient><diffuse>0.95 0.75 0.05 1</diffuse></material>
+      </visual>
+      <visual name="piloto_3">
+        <pose>0.0271 -0.0900 0.1441 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.015</length></cylinder></geometry>
+        <material><ambient>0.90 0.08 0.06 1</ambient><diffuse>0.90 0.08 0.06 1</diffuse></material>
+      </visual>
+      <visual name="pulsador_marcha">
+        <pose>0.0295 0.0200 0.1449 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.014</radius><length>0.02</length></cylinder></geometry>
+        <material><ambient>0.10 0.65 0.15 1</ambient><diffuse>0.10 0.65 0.15 1</diffuse></material>
+      </visual>
+      <visual name="pulsador_paro">
+        <pose>0.0295 0.0700 0.1449 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.014</radius><length>0.02</length></cylinder></geometry>
+        <material><ambient>0.80 0.08 0.06 1</ambient><diffuse>0.80 0.08 0.06 1</diffuse></material>
+      </visual>
+      <visual name="seta_emergencia_base">
+        <pose>0.0196 0.1650 0.1573 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.03</radius><length>0.01</length></cylinder></geometry>
+        <material><ambient>0.95 0.80 0.05 1</ambient><diffuse>0.95 0.80 0.05 1</diffuse></material>
+      </visual>
+      <visual name="seta_emergencia">
+        <pose>0.0337 0.1650 0.1624 0 1.2217 0</pose>
+        <geometry><cylinder><radius>0.02</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.85 0.05 0.05 1</ambient><diffuse>0.85 0.05 0.05 1</diffuse></material>
+      </visual>
+      <visual name="borna_1">
+        <pose>0.0551 -0.1875 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_2">
+        <pose>0.0551 -0.1625 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_3">
+        <pose>0.0551 -0.1375 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_4">
+        <pose>0.0551 -0.1125 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.15 0.35 0.75 1</ambient><diffuse>0.15 0.35 0.75 1</diffuse></material>
+      </visual>
+      <visual name="borna_5">
+        <pose>0.0551 -0.0875 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_6">
+        <pose>0.0551 -0.0625 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_7">
+        <pose>0.0551 -0.0375 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_8">
+        <pose>0.0551 -0.0125 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.15 0.35 0.75 1</ambient><diffuse>0.15 0.35 0.75 1</diffuse></material>
+      </visual>
+      <visual name="borna_9">
+        <pose>0.0551 0.0125 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_10">
+        <pose>0.0551 0.0375 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_11">
+        <pose>0.0551 0.0625 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_12">
+        <pose>0.0551 0.0875 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.15 0.35 0.75 1</ambient><diffuse>0.15 0.35 0.75 1</diffuse></material>
+      </visual>
+      <visual name="borna_13">
+        <pose>0.0551 0.1125 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_14">
+        <pose>0.0551 0.1375 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_15">
+        <pose>0.0551 0.1625 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.62 0.63 0.60 1</ambient><diffuse>0.62 0.63 0.60 1</diffuse></material>
+      </visual>
+      <visual name="borna_16">
+        <pose>0.0551 0.1875 0.0744 0 -0.3491 0</pose>
+        <geometry><box><size>0.02 0.02 0.035</size></box></geometry>
+        <material><ambient>0.15 0.35 0.75 1</ambient><diffuse>0.15 0.35 0.75 1</diffuse></material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0.16 0 0 0</pose>
+        <geometry><box><size>0.30 0.47 0.32</size></box></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

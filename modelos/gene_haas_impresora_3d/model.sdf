@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Impresora 3D cerrada (modelo propio, primitivas). Medidas APROXIMADAS: 0.38 x 0.38 x 0.45 m (+ bobina encima). -->
+  <!-- Origen = centro de la base; se apoya sobre el banco (pose z = 0.90). Frente = +x local. Collision = carcasa. -->
+  <model name="gene_haas_impresora_3d">
+    <static>true</static>
+    <link name="cuerpo">
+      <visual name="carcasa">
+        <pose>0 0 0.225 0 0 0</pose>
+        <geometry><box><size>0.38 0.38 0.45</size></box></geometry>
+        <material><ambient>0.20 0.21 0.23 1</ambient><diffuse>0.20 0.21 0.23 1</diffuse></material>
+      </visual>
+      <collision name="carcasa_collision">
+        <pose>0 0 0.225 0 0 0</pose>
+        <geometry><box><size>0.38 0.38 0.45</size></box></geometry>
+      </collision>
+      <visual name="puerta_cristal">
+        <pose>0.1915 0 0.26 0 0 0</pose>
+        <geometry><box><size>0.003 0.3 0.3</size></box></geometry>
+        <material><ambient>0.05 0.08 0.12 1</ambient><diffuse>0.05 0.08 0.12 1</diffuse></material>
+        <transparency>0.3</transparency>
+      </visual>
+      <visual name="pantalla">
+        <pose>0.1915 0.10 0.06 0 0 0</pose>
+        <geometry><box><size>0.003 0.08 0.05</size></box></geometry>
+        <material><ambient>0.35 0.65 0.90 1</ambient><diffuse>0.35 0.65 0.90 1</diffuse></material>
+      </visual>
+      <visual name="bobina">
+        <pose>-0.10 0 0.48 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.09</radius><length>0.06</length></cylinder></geometry>
+        <material><ambient>0.85 0.45 0.10 1</ambient><diffuse>0.85 0.45 0.10 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

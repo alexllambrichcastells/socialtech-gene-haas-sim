@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 0.870 x 1.055 x 0.840 m): no necesita offset. -->
+  <model name="gene_haas_mesa_soldadura">
+    <static>true</static>
+    <link name="base">
+      <collision name="collision">
+        <pose>0 0 0.42 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.870 1.055 0.840</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_mesa_soldadura/meshes/Mesa_Soldadura.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.25 0.25 0.25 1</ambient>
+          <diffuse>0.25 0.25 0.25 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

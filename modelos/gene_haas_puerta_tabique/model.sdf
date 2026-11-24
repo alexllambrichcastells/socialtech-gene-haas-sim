@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Origen = eje de la bisagra. Hoja de 1.19 m a lo largo de +x local, 0.04 m de grosor hacia -y local, 1.99 m de alto. -->
+  <model name="gene_haas_puerta_tabique">
+    <static>true</static>
+    <link name="hoja">
+      <collision name="collision">
+        <pose>0.595 -0.02 0.995 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.19 0.04 1.99</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0.595 -0.02 0.995 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.19 0.04 1.99</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.55 0.75 0.85 1</ambient>
+          <diffuse>0.55 0.75 0.85 1</diffuse>
+        </material>
+        <transparency>0.5</transparency>
+      </visual>
+    </link>
+  </model>
+</sdf>

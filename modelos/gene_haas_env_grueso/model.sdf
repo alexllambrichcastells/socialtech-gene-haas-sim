@@ -1,0 +1,352 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- GENERADO por herramientas/generar_gene_haas_env_grueso.py: no editar a mano, cambiar los parámetros del script.
+       Sótano de Gene Haas con paredes de ~0.25 m (recrecidas hacia FUERA) y ventanas altas y estrechas
+       (z 2.10-2.50 m, antes 1.00-2.50). Medidas APROXIMADAS.
+       La malla original Sotano.dae (modelo gene_haas_env) se reutiliza sin cambios: interior idéntico.
+       Revertir: en mundo/gene_haas.sdf usar <uri>model://gene_haas_env</uri>. -->
+  <model name="gene_haas_env_grueso">
+    <static>true</static>
+    <link name="sotano">
+      <collision name="sotano_collision">
+        <geometry><mesh><uri>model://gene_haas_env/meshes/Sotano.dae</uri></mesh></geometry>
+      </collision>
+      <visual name="sotano_visual">
+        <geometry><mesh><uri>model://gene_haas_env/meshes/Sotano.dae</uri></mesh></geometry>
+      </visual>
+      <visual name="recrecido_pared_sur_sala_maquinas_1">
+        <pose>-11.6382 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8405 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_1_collision">
+        <pose>-11.6382 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8405 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_2">
+        <pose>-10.0555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_2_collision">
+        <pose>-10.0555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_3">
+        <pose>-10.0555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_3_collision">
+        <pose>-10.0555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_4">
+        <pose>-7.9555 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_4_collision">
+        <pose>-7.9555 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_5">
+        <pose>-5.8555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_5_collision">
+        <pose>-5.8555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_6">
+        <pose>-5.8555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_6_collision">
+        <pose>-5.8555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_7">
+        <pose>-3.7555 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_7_collision">
+        <pose>-3.7555 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_8">
+        <pose>-1.6555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_8_collision">
+        <pose>-1.6555 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_9">
+        <pose>-1.6555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_9_collision">
+        <pose>-1.6555 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_10">
+        <pose>0.4445 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_10_collision">
+        <pose>0.4445 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>1.8750 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_11">
+        <pose>2.5445 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_11_collision">
+        <pose>2.5445 -4.8300 1.0500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 2.1000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_12">
+        <pose>2.5445 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_12_collision">
+        <pose>2.5445 -4.8300 2.6000 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.2400 0.2000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_maquinas_13">
+        <pose>3.9145 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.4150 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_maquinas_13_collision">
+        <pose>3.9145 -4.8300 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.4150 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_maquinas_1">
+        <pose>4.0020 -2.6490 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>4.6020 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_maquinas_1_collision">
+        <pose>4.0020 -2.6490 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>4.6020 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_celulas_1">
+        <pose>5.4255 -0.4680 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>3.0870 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_celulas_1_collision">
+        <pose>5.4255 -0.4680 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>3.0870 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_celulas_2">
+        <pose>7.3690 -0.4680 2.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8000 0.2400 0.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_celulas_2_collision">
+        <pose>7.3690 -0.4680 2.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8000 0.2400 0.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur_sala_celulas_3">
+        <pose>7.8435 -0.4680 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.1490 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur_sala_celulas_3_collision">
+        <pose>7.8435 -0.4680 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.1490 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_escalon_celulas_1">
+        <pose>7.7980 -2.7565 1.3500 0 0 -1.57080</pose>
+        <geometry><box><size>4.8170 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_escalon_celulas_1_collision">
+        <pose>7.7980 -2.7565 1.3500 0 0 -1.57080</pose>
+        <geometry><box><size>4.8170 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur2_sala_celulas_1">
+        <pose>8.0985 -5.0450 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8410 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur2_sala_celulas_1_collision">
+        <pose>8.0985 -5.0450 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.8410 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur2_sala_celulas_2">
+        <pose>8.9185 -5.0450 2.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.7990 0.2400 0.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur2_sala_celulas_2_collision">
+        <pose>8.9185 -5.0450 2.3500 0 0 0.00000</pose>
+        <geometry><box><size>0.7990 0.2400 0.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_sur2_sala_celulas_3">
+        <pose>10.6880 -5.0450 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>2.7400 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_sur2_sala_celulas_3_collision">
+        <pose>10.6880 -5.0450 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>2.7400 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_tramo_sur_1">
+        <pose>11.9380 -4.5875 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.1550 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_tramo_sur_1_collision">
+        <pose>11.9380 -4.5875 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.1550 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_entrante_sur_1">
+        <pose>10.9635 -4.1300 1.3500 0 0 3.14159</pose>
+        <geometry><box><size>2.1890 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_entrante_sur_1_collision">
+        <pose>10.9635 -4.1300 1.3500 0 0 3.14159</pose>
+        <geometry><box><size>2.1890 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_entrante_oeste_1">
+        <pose>9.9890 -2.9000 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>2.7000 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_entrante_oeste_1_collision">
+        <pose>9.9890 -2.9000 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>2.7000 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_entrante_norte_1">
+        <pose>10.9635 -1.6700 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>2.1890 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_entrante_norte_1_collision">
+        <pose>10.9635 -1.6700 1.3500 0 0 0.00000</pose>
+        <geometry><box><size>2.1890 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_celulas_1">
+        <pose>11.9380 -1.6700 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>0.2400 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_celulas_1_collision">
+        <pose>11.9380 -1.6700 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>0.2400 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_celulas_2">
+        <pose>11.9380 0.1000 2.4500 0 0 1.57080</pose>
+        <geometry><box><size>3.3000 0.2400 0.5000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_celulas_2_collision">
+        <pose>11.9380 0.1000 2.4500 0 0 1.57080</pose>
+        <geometry><box><size>3.3000 0.2400 0.5000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_celulas_3">
+        <pose>11.9380 2.4875 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.4750 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_celulas_3_collision">
+        <pose>11.9380 2.4875 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.4750 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_celulas_4">
+        <pose>11.9380 3.6250 2.3500 0 0 1.57080</pose>
+        <geometry><box><size>0.8000 0.2400 0.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_celulas_4_collision">
+        <pose>11.9380 3.6250 2.3500 0 0 1.57080</pose>
+        <geometry><box><size>0.8000 0.2400 0.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_este_sala_celulas_5">
+        <pose>11.9380 4.5950 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.1400 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_este_sala_celulas_5_collision">
+        <pose>11.9380 4.5950 1.3500 0 0 1.57080</pose>
+        <geometry><box><size>1.1400 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_norte_1">
+        <pose>0.3498 5.0450 1.3500 0 0 3.14159</pose>
+        <geometry><box><size>23.4165 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_norte_1_collision">
+        <pose>0.3498 5.0450 1.3500 0 0 3.14159</pose>
+        <geometry><box><size>23.4165 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="recrecido_pared_oeste_diagonal_1">
+        <pose>-11.5882 0.1162 1.3500 0 0 -1.64332</pose>
+        <geometry><box><size>10.1404 0.2400 2.7000</size></box></geometry>
+        <material><ambient>0.92 0.92 0.92 1</ambient><diffuse>0.92 0.92 0.92 1</diffuse></material>
+      </visual>
+      <collision name="recrecido_pared_oeste_diagonal_1_collision">
+        <pose>-11.5882 0.1162 1.3500 0 0 -1.64332</pose>
+        <geometry><box><size>10.1404 0.2400 2.7000</size></box></geometry>
+      </collision>
+      <visual name="relleno_ventana_1">
+        <pose>-10.0555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+        <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>0.62 0.62 0.62 1</emissive></material>
+      </visual>
+      <collision name="relleno_ventana_1_collision">
+        <pose>-10.0555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+      </collision>
+      <visual name="relleno_ventana_2">
+        <pose>-5.8555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+        <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>0.62 0.62 0.62 1</emissive></material>
+      </visual>
+      <collision name="relleno_ventana_2_collision">
+        <pose>-5.8555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+      </collision>
+      <visual name="relleno_ventana_3">
+        <pose>-1.6555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+        <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>0.62 0.62 0.62 1</emissive></material>
+      </visual>
+      <collision name="relleno_ventana_3_collision">
+        <pose>-1.6555 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+      </collision>
+      <visual name="relleno_ventana_4">
+        <pose>2.5445 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+        <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>0.62 0.62 0.62 1</emissive></material>
+      </visual>
+      <collision name="relleno_ventana_4_collision">
+        <pose>2.5445 -4.7050 1.5500 0 0 0.00000</pose>
+        <geometry><box><size>2.3250 0.0100 1.1000</size></box></geometry>
+      </collision>
+      <visual name="suelo_exterior">
+        <pose>-0.0003 0.0000 0 0 0 0</pose>
+        <geometry><plane><normal>0 0 1</normal><size>31.6365 17.8500</size></plane></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <collision name="suelo_exterior_collision">
+        <pose>-0.0003 0.0000 0 0 0 0</pose>
+        <geometry><plane><normal>0 0 1</normal><size>31.6365 17.8500</size></plane></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

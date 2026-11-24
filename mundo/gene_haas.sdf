@@ -1,0 +1,409 @@
+<?xml version="1.0" ?>
+<!-- SocialTech - Laboratorio Gene Haas (simulación). Primera versión mínima: solo el entorno del sótano. -->
+<sdf version="1.9">
+  <world name="gene_haas">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre</render_engine>
+    </plugin>
+
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Entorno: sótano con paredes de ~0.25 m recrecidas hacia fuera y ventanas altas y estrechas (z 2.10-2.50 m).
+         Generado por herramientas/generar_gene_haas_env_grueso.py; interior idéntico a Sotano.dae.
+         Para volver al entorno original (paredes de 1 cm, ventanas z 1.00-2.50): <uri>model://gene_haas_env</uri>. -->
+    <include>
+      <name>gene_haas_env</name>
+      <uri>model://gene_haas_env_grueso</uri>
+    </include>
+
+    <!-- Layout aproximado desde el plano "Ensamblaje_20261111_v8 - Hoja1.pdf" (ver config/gene_haas_layout.csv).
+         Pasillo de trabajo este-oeste en y ~ 0: los equipos del lado sur miran al norte (yaw 0).
+         Mapeo plano -> mundo validado con paredes y pilares del sótano; precisión ~0.2-0.3 m, no milimétrica. -->
+
+    <!-- Posición 5 del plano: metrología, contra la pared oeste, frente hacia el pasillo (este). -->
+    <include>
+      <name>puesto_3_metrologia</name>
+      <uri>model://gene_haas_puesto_3_metrologia</uri>
+      <pose>-10.70 -0.28 0 0 0 0</pose>
+    </include>
+
+    <!-- Posición 4 del plano: fresadora VF2, lado sur entre el 1er y 2º pilar, frente al pasillo (norte). -->
+    <include>
+      <name>fresadora_vf2</name>
+      <uri>model://gene_haas_fresadora_vf2</uri>
+      <pose>-6.45 -2.55 0 0 0 0</pose>
+    </include>
+
+    <!-- Posición 3 del plano: torno ST10, lado sur entre el 2º y 3er pilar, frente al pasillo (norte). -->
+    <include>
+      <name>puesto_2_torno_st10</name>
+      <uri>model://gene_haas_puesto_2_torno_st10</uri>
+      <pose>-2.24 -1.85 0 0 0 0</pose>
+    </include>
+
+    <!-- Posición 2 del plano: mesas de trabajo, bloque 2x2 de 4 instancias del mismo modelo (celdas de 0.70 x 1.70 m, yaw 0).
+         Rejilla medida en el plano: x 0.84 | 1.54 | 2.24 ; y -1.29 | -2.99 | -4.69. La fila sur queda contra la pared sur, como en el plano. -->
+    <include>
+      <name>puesto_1_mesas</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>1.19 -2.14 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>puesto_1_mesas_2</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>1.89 -2.14 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>puesto_1_mesas_3</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>1.19 -3.84 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>puesto_1_mesas_4</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>1.89 -3.84 0 0 0 0</pose>
+    </include>
+
+    <!-- Fila norte. Posición 6 del plano: fresadora UMC500, junto a la pared oeste; yaw 0 verificado con la planta de la malla. -->
+    <include>
+      <name>fresadora_umc500</name>
+      <uri>model://gene_haas_fresadora_umc500</uri>
+      <pose>-8.40 2.30 0 0 0 0</pose>
+    </include>
+
+    <!-- Fila norte. Posición 7 del plano (puesto 4): fresadora CM1, contra la pared norte; yaw 0 verificado con la planta de la malla. -->
+    <include>
+      <name>fresadora_cm1</name>
+      <uri>model://gene_haas_fresadora_cm1</uri>
+      <pose>-4.97 3.80 0 0 0 0</pose>
+    </include>
+
+    <!-- Fila norte. Posición 8 del plano: fresadora SMM, contra la pared norte; yaw 0 verificado con la planta de la malla. -->
+    <include>
+      <name>fresadora_smm</name>
+      <uri>model://gene_haas_fresadora_smm</uri>
+      <pose>-2.61 3.17 0 0 0 0</pose>
+    </include>
+
+    <!-- Fila norte. Posición 9 del plano: torno ST20-Y, contra la pared norte; yaw 0 verificado con la planta de la malla. -->
+    <include>
+      <name>torno_st20y</name>
+      <uri>model://gene_haas_torno_st20y</uri>
+      <pose>0.445 3.455 0 0 0 0</pose>
+    </include>
+
+    <!-- Mobiliario fijo. Pared oeste diagonal: cara interior de (-11.8077,-4.70) a (-11.1092,4.915), yaw -0.07252 rad (-4.155 deg).
+         Los elementos se apoyan en ella con 0.03 m de holgura. -->
+    <include>
+      <name>almacen_barras</name>
+      <uri>model://gene_haas_almacen_barras</uri>
+      <pose>-10.8774 2.6815 0 0 0 -0.07252</pose>
+    </include>
+
+    <include>
+      <name>mesa_soldadura_1</name>
+      <uri>model://gene_haas_mesa_soldadura</uri>
+      <pose>-11.2981 -4.1054 0 0 0 -0.07252</pose>
+    </include>
+
+    <include>
+      <name>mesa_soldadura_2</name>
+      <uri>model://gene_haas_mesa_soldadura</uri>
+      <pose>-11.2213 -3.0478 0 0 0 -0.07252</pose>
+    </include>
+
+    <!-- Tabique de vidrio entre la sala principal y la zona de entrada (cotas 15040.7 / 7887 del plano):
+         cierra el hueco del sótano en x = 3.8715..3.8815 entre el final de la pared este (y = -0.343) y la pared norte (y = 4.92). -->
+    <include>
+      <name>tabique_vidrio</name>
+      <uri>model://gene_haas_tabique_vidrio</uri>
+      <pose>3.8765 2.2885 0 0 0 0</pose>
+    </include>
+
+    <!-- Puerta del tabique: hoja abierta en sentido horario (vista en planta, desde la sala de máquinas) hacia la sala de células.
+         Bisagra en la jamba sur del hueco (y 0.2895), girada 119.6 deg desde cerrada hasta apoyar en la pared sur de la sala de células.
+         El hueco de paso (y 0.29..1.49) queda libre en collision. -->
+    <include>
+      <name>puerta_tabique</name>
+      <uri>model://gene_haas_puerta_tabique</uri>
+      <pose>3.9025 0.2895 0 0 0 -0.5165</pose>
+    </include>
+
+    <!-- Célula SMC (SIF400): 5 estaciones contiguas contra la pared norte de la sala de células, orden SIF1-SIF2-SIF5-SIF6-SIF7 de oeste a este.
+         Yaw pi: la cinta queda contra la pared (verificado con el arco de la SIF6 en el plano). -->
+    <include>
+      <name>celula_smc_sif1</name>
+      <uri>model://gene_haas_celula_smc_sif1</uri>
+      <pose>4.556 4.385 0 0 0 3.14159</pose>
+    </include>
+
+    <include>
+      <name>celula_smc_sif2</name>
+      <uri>model://gene_haas_celula_smc_sif2</uri>
+      <pose>5.788 4.385 0 0 0 3.14159</pose>
+    </include>
+
+    <include>
+      <name>celula_smc_sif5</name>
+      <uri>model://gene_haas_celula_smc_sif5</uri>
+      <pose>7.020 4.385 0 0 0 3.14159</pose>
+    </include>
+
+    <include>
+      <name>celula_smc_sif6</name>
+      <uri>model://gene_haas_celula_smc_sif6</uri>
+      <pose>8.252 4.385 0 0 0 3.14159</pose>
+    </include>
+
+    <include>
+      <name>celula_smc_sif7</name>
+      <uri>model://gene_haas_celula_smc_sif7</uri>
+      <pose>9.484 4.385 0 0 0 3.14159</pose>
+    </include>
+
+    <!-- Punto 1 del plano (puesto 5): dos mesas de entrada contiguas, 1.74 m al norte de la pared sur de la sala de células (cota 1740). Reutiliza el modelo de mesa. -->
+    <include>
+      <name>puesto_5_mesa_entrada</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>6.155 1.752 0 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <name>puesto_5_mesa_entrada_2</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>7.855 1.752 0 0 0 1.5708</pose>
+    </include>
+
+    <!-- Punto 1 del plano: segunda fila de mesas de entrada, pegada a la primera por el lado de las células SMC (bloque 2 x 2).
+         La primera fila no se mueve: su borde sur sigue a 1.740 m de la cara interior de la pared sur de la sala de células. -->
+    <include>
+      <name>puesto_5_mesa_entrada_3</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>6.155 2.452 0 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <name>puesto_5_mesa_entrada_4</name>
+      <uri>model://gene_haas_puesto_1_mesas</uri>
+      <pose>7.855 2.452 0 0 0 1.5708</pose>
+    </include>
+
+    <!-- Capa A (zona de mesas, punto 2): 7 puestos de ordenador sobre el bloque 2x2 de mesas y 7 sillas.
+         Posiciones APROXIMADAS a partir del plano anotado y de fotos del laboratorio; ver config/gene_haas_layout.csv.
+         Puestos: origen en el borde de la mesa, +x local hacia dentro de la mesa. Sillas: +x local hacia su ordenador.
+         La cabecera norte no lleva silla: es el punto de parada del robot. -->
+    <include>
+      <name>ordenador_cabecera_norte</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>1.540 -1.290 0 0 0 -1.57080</pose>
+    </include>
+    <include>
+      <name>ordenador_oeste_1</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>0.840 -2.400 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>ordenador_oeste_2</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>0.840 -3.275 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>ordenador_oeste_3</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>0.840 -4.150 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>ordenador_este_1</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>2.240 -2.400 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>ordenador_este_2</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>2.240 -3.275 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>ordenador_este_3</name>
+      <uri>model://gene_haas_puesto_ordenador</uri>
+      <pose>2.240 -4.150 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>silla_oeste_1</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>0.440 -2.400 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>silla_oeste_2</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>0.440 -3.275 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>silla_oeste_3</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>0.440 -4.150 0 0 0 0.00000</pose>
+    </include>
+    <include>
+      <name>silla_este_1</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>2.640 -2.400 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>silla_este_2</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>2.640 -3.275 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>silla_este_3</name>
+      <uri>model://gene_haas_silla</uri>
+      <pose>2.640 -4.150 0 0 0 3.14159</pose>
+    </include>
+
+    <!-- Capa B: fila de bancos de taller contra la pared este de la sala principal (x = 3.8715), con máquinas de sobremesa encima.
+         Posiciones y medidas APROXIMADAS (plano anotado y fotos del laboratorio). 3 módulos de 1.30 x 0.45 m a 1 cm de la pared, desde la pared sur
+         hasta y = -0.77; el tramo hasta la puerta del tabique queda libre (perchero, capa C). Frente de bancos y máquinas
+         hacia el oeste (yaw pi). Máquinas apoyadas en el tablero (z = 0.9). -->
+    <include>
+      <name>banco_taller_1</name>
+      <uri>model://gene_haas_banco_taller</uri>
+      <pose>3.6365 -4.040 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>banco_taller_2</name>
+      <uri>model://gene_haas_banco_taller</uri>
+      <pose>3.6365 -2.730 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>banco_taller_3</name>
+      <uri>model://gene_haas_banco_taller</uri>
+      <pose>3.6365 -1.420 0 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>maquina_sobremesa_1</name>
+      <uri>model://gene_haas_maquina_sobremesa</uri>
+      <pose>3.6365 -4.300 0.9 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>impresora_3d_1</name>
+      <uri>model://gene_haas_impresora_3d</uri>
+      <pose>3.6365 -3.700 0.9 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>impresora_3d_2</name>
+      <uri>model://gene_haas_impresora_3d</uri>
+      <pose>3.6365 -3.050 0.9 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>impresora_3d_3</name>
+      <uri>model://gene_haas_impresora_3d</uri>
+      <pose>3.6365 -2.450 0.9 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>maquina_sobremesa_2</name>
+      <uri>model://gene_haas_maquina_sobremesa</uri>
+      <pose>3.6365 -1.750 0.9 0 0 3.14159</pose>
+    </include>
+    <include>
+      <name>impresora_3d_4</name>
+      <uri>model://gene_haas_impresora_3d</uri>
+      <pose>3.6365 -1.100 0.9 0 0 3.14159</pose>
+    </include>
+
+    <!-- Capa C: perchero de pie junto a la pared este, en el extremo norte de la fila de bancos y antes de la puerta del tabique.
+         Posición APROXIMADA (plano anotado y fotos del laboratorio). -->
+    <include>
+      <name>perchero</name>
+      <uri>model://gene_haas_perchero</uri>
+      <pose>3.640 -0.450 0 0 0 0</pose>
+    </include>
+
+    <!-- Bancos móviles (carros de taller, versión compacta 1.00 x 0.45 m), estáticos. Posiciones APROXIMADAS (plano anotado y fotos del laboratorio), fuera del
+         recorrido orientativo del robot (pasillo principal y acceso a la puerta del tabique). -->
+    <include>
+      <name>carro_taller_sur</name>
+      <uri>model://gene_haas_carro_taller</uri>
+      <pose>-4.4025 -2.150 0 0 0 -1.57080</pose>
+    </include>
+    <include>
+      <name>carro_taller_norte</name>
+      <uri>model://gene_haas_carro_taller</uri>
+      <pose>2.9820 3.000 0 0 0 1.57080</pose>
+    </include>
+
+    <!-- Personas trabajando en los carros (estáticas, sin animación). Posiciones APROXIMADAS: una instancia por persona. -->
+    <include>
+      <name>persona_carro_sur</name>
+      <uri>model://gene_haas_persona_trabajando</uri>
+      <pose>-4.4025 -2.980 0 0 0 1.57080</pose>
+    </include>
+    <include>
+      <name>persona_carro_norte</name>
+      <uri>model://gene_haas_persona_trabajando</uri>
+      <pose>2.9820 3.830 0 0 0 -1.57080</pose>
+    </include>
+
+    <!-- Carteles decorativos "GENE HAAS CENTER" (un único modelo sin collision). Origen = cara interior de la pared a la altura del
+         centro del panel; +x local hacia la sala. Posiciones APROXIMADAS. -->
+    <include>
+      <name>cartel_sala_celulas</name>
+      <uri>model://gene_haas_cartel</uri>
+      <pose>7.8453 4.9150 2.140 0 0 -1.57080</pose>
+    </include>
+    <include>
+      <name>cartel_oeste</name>
+      <uri>model://gene_haas_cartel</uri>
+      <pose>-11.6640 -2.7227 1.750 0 0 -0.07252</pose>
+    </include>
+
+    <!-- Entrenadores de PLC de sobremesa (atrezo), uno por mesa del bloque 2 x 2 de entrada, sobre el tablero (z 0.83) y con la cara de
+         mandos hacia el borde exterior de su mesa (a 0.05 m de él). Posiciones APROXIMADAS. -->
+    <include>
+      <name>entrenador_plc_1</name>
+      <uri>model://gene_haas_entrenador_plc</uri>
+      <pose>6.155 1.602 0.83 0 0 -1.57080</pose>
+    </include>
+    <include>
+      <name>entrenador_plc_2</name>
+      <uri>model://gene_haas_entrenador_plc</uri>
+      <pose>7.855 1.602 0.83 0 0 -1.57080</pose>
+    </include>
+    <include>
+      <name>entrenador_plc_3</name>
+      <uri>model://gene_haas_entrenador_plc</uri>
+      <pose>6.155 2.602 0.83 0 0 1.57080</pose>
+    </include>
+    <include>
+      <name>entrenador_plc_4</name>
+      <uri>model://gene_haas_entrenador_plc</uri>
+      <pose>7.855 2.602 0.83 0 0 1.57080</pose>
+    </include>
+  </world>
+</sdf>

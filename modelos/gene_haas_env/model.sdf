@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <model name="gene_haas_env">
+    <static>true</static>
+    <link name="sotano">
+      <collision name="sotano_collision">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_env/meshes/Sotano.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="sotano_visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_env/meshes/Sotano.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

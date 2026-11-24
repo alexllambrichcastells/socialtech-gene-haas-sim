@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+  Extensiones de Gazebo Harmonic para el Tracer2 (sustituyen a los plugins gazebo_ros de Gazebo Classic del original).
+  Los sistemas van en el propio robot para no tocar el mundo: el mundo solo aporta Physics, SceneBroadcaster,
+  UserCommands y Sensors (render de sensores).
+  Topics de Gazebo (el puente ROS-Gazebo los publica con el mismo nombre en ROS 2):
+    cmd_vel (entrada), odom, tf (odom -> base_link), joint_states, scan, imu
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Tracción diferencial + odometría + TF odom -> base_link -->
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>rueda_izquierda_joint</left_joint>
+      <right_joint>rueda_derecha_joint</right_joint>
+      <wheel_separation>0.335</wheel_separation>
+      <wheel_radius>0.0625</wheel_radius>
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+      <tf_topic>tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+      <odom_publish_frequency>50</odom_publish_frequency>
+    </plugin>
+    <!-- Estado de las articulaciones (ruedas y apoyos) para robot_state_publisher -->
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <topic>joint_states</topic>
+    </plugin>
+    <!-- Sistema IMU (el mundo Gene Haas no lo carga) -->
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+  </gazebo>
+
+  <!-- LiDAR 2D: parámetros del original (720 muestras, +-90 deg, 0.10-30 m, ruido gaussiano 0.01 m); frecuencia = argumento lidar_hz -->
+  <gazebo reference="rslidar_link">
+    <sensor name="lidar" type="gpu_lidar">
+      <topic>scan</topic>
+      <gz_frame_id>rslidar_link</gz_frame_id>
+      <update_rate>$(arg lidar_hz)</update_rate>
+      <always_on>true</always_on>
+      <visualize>false</visualize>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples>
+            <min_angle>0</min_angle>
+            <max_angle>0</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+
+  <!-- IMU a 100 Hz (como el original) -->
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <topic>imu</topic>
+      <gz_frame_id>imu_link</gz_frame_id>
+      <update_rate>100</update_rate>
+      <always_on>true</always_on>
+    </sensor>
+  </gazebo>
+
+  <!-- Fricción: ruedas motrices con agarre, apoyos sin fricción (ruedas locas) -->
+  <gazebo reference="rueda_izquierda_Link"><mu1>1.0</mu1><mu2>1.0</mu2></gazebo>
+  <gazebo reference="rueda_derecha_Link"><mu1>1.0</mu1><mu2>1.0</mu2></gazebo>
+  <gazebo reference="apoyo_izquierdo_delantero_Link"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+  <gazebo reference="apoyo_izquierdo_trasero_Link"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+  <gazebo reference="apoyo_derecho_delantero_Link"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+  <gazebo reference="apoyo_derecho_trasero_Link"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+
+</robot>

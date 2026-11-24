@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Banco de taller (modelo propio, primitivas). Medidas APROXIMADAS: 1.30 m de largo (y local), 0.45 m de fondo (x local), tablero a 0.86-0.90 m. -->
+  <!-- Origen = centro de la huella en el suelo; +x local = frente (lado de la persona), -x local = pared. -->
+  <!-- Armario azul (0.60 x 0.40 x 0.72 m) en el lado -y local. Collision = tablero, patas y armario (sin caja envolvente): -->
+  <!-- el LiDAR a 0.20 m ve las patas y el armario. -->
+  <model name="gene_haas_banco_taller">
+    <static>true</static>
+    <link name="cuerpo">
+      <visual name="tablero">
+        <pose>0 0 0.88 0 0 0</pose>
+        <geometry><box><size>0.45 1.3 0.04</size></box></geometry>
+        <material><ambient>0.72 0.70 0.64 1</ambient><diffuse>0.72 0.70 0.64 1</diffuse></material>
+      </visual>
+      <collision name="tablero_collision">
+        <pose>0 0 0.88 0 0 0</pose>
+        <geometry><box><size>0.45 1.3 0.04</size></box></geometry>
+      </collision>
+      <visual name="pata_1">
+        <pose>0.195 0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <collision name="pata_1_collision">
+        <pose>0.195 0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+      </collision>
+      <visual name="pata_2">
+        <pose>0.195 -0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <collision name="pata_2_collision">
+        <pose>0.195 -0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+      </collision>
+      <visual name="pata_3">
+        <pose>-0.195 0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <collision name="pata_3_collision">
+        <pose>-0.195 0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+      </collision>
+      <visual name="pata_4">
+        <pose>-0.195 -0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <collision name="pata_4_collision">
+        <pose>-0.195 -0.62 0.43 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.86</size></box></geometry>
+      </collision>
+      <visual name="larguero_1">
+        <pose>0.195 0 0.10 0 0 0</pose>
+        <geometry><box><size>0.03 1.2 0.03</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <visual name="larguero_2">
+        <pose>-0.195 0 0.10 0 0 0</pose>
+        <geometry><box><size>0.03 1.2 0.03</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <visual name="travesano_superior">
+        <pose>0.195 0 0.835 0 0 0</pose>
+        <geometry><box><size>0.03 1.2 0.05</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <visual name="armario">
+        <pose>0 -0.30 0.44 0 0 0</pose>
+        <geometry><box><size>0.4 0.6 0.72</size></box></geometry>
+        <material><ambient>0.10 0.25 0.60 1</ambient><diffuse>0.10 0.25 0.60 1</diffuse></material>
+      </visual>
+      <collision name="armario_collision">
+        <pose>0 -0.30 0.44 0 0 0</pose>
+        <geometry><box><size>0.4 0.6 0.72</size></box></geometry>
+      </collision>
+      <visual name="armario_junta">
+        <pose>0.2015 -0.30 0.44 0 0 0</pose>
+        <geometry><box><size>0.004 0.005 0.7</size></box></geometry>
+        <material><ambient>0.06 0.06 0.07 1</ambient><diffuse>0.06 0.06 0.07 1</diffuse></material>
+      </visual>
+      <visual name="tirador_1">
+        <pose>0.205 -0.33 0.62 0 0 0</pose>
+        <geometry><box><size>0.01 0.02 0.12</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+      <visual name="tirador_2">
+        <pose>0.205 -0.27 0.62 0 0 0</pose>
+        <geometry><box><size>0.01 0.02 0.12</size></box></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

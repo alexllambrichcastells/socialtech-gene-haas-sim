@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 0.726 x 3.029 x 2.500 m): no necesita offset. -->
+  <model name="gene_haas_almacen_barras">
+    <static>true</static>
+    <link name="base">
+      <!-- Collision: baja (z 0-0.3) ajustada a lo visible a la altura del robot; alta = caja envolvente (herramientas/ajustar_colisiones_bajas.py) -->
+      <collision name="collision_baja">
+        <pose>-0.2487 0.0181 0.1500 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2261 2.9927 0.3000</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_alta">
+        <pose>0.0000 0.0000 1.4000 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.7260 3.0291 2.2000</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_almacen_barras/meshes/Almacen_Barras.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.35 0.40 0.45 1</ambient>
+          <diffuse>0.35 0.40 0.45 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- Enlaces de los sensores del Tracer2 (posiciones del original: lidar.xacro e imu.xacro). Los sensores de Gazebo están en tracer2_gazebo.xacro. -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- LiDAR 2D (RoboSense en el original) -->
+  <link name="rslidar_link">
+    <visual>
+      <geometry><cylinder length="0.07" radius="0.03"/></geometry>
+      <material name="tracer2_naranja"><color rgba="1.0 0.4235 0.0392 1"/></material>
+    </visual>
+  </link>
+  <joint name="rslidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rslidar_link"/>
+    <origin xyz="0.2125 0 0.20" rpy="0 0 0"/>
+  </joint>
+
+  <!-- IMU (sin collision: en el original tenía una caja de 0.2 x 0.2 x 0.05 m que solo añadía contacto espurio) -->
+  <link name="imu_link">
+    <visual>
+      <geometry><box size="0.1 0.1 0.05"/></geometry>
+    </visual>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+  </joint>
+
+</robot>

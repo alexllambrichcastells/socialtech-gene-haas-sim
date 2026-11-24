@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 1.232 x 1.000 x 1.3035 m): no necesita offset. -->
+  <model name="gene_haas_celula_smc_sif7">
+    <static>true</static>
+    <link name="base">
+      <collision name="collision">
+        <pose>0 0 0.6518 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.232 1.000 1.3035</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_celula_smc_sif7/meshes/SIF7-0-CE.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.55 0.60 0.65 1</ambient>
+          <diffuse>0.55 0.60 0.65 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+  Tracer2 (AGV diferencial de SocialTech) portado a ROS 2 Jazzy + Gazebo Harmonic.
+  Origen: https://github.com/SocialTech-Challenge/SocialTech-Gazebo (urdf/tracer2.xacro) (exportado de SolidWorks, ROS 1 / Gazebo Classic, licencia BSD).
+  Cambios del port:
+    - Rutas de malla con file:// + $(find tracer2_description) (sirven en Gazebo y en RViz2 sin GZ_SIM_RESOURCE_PATH).
+    - Collision con primitivas (caja, cilindros, esferas) en lugar de las mallas STL: contacto más estable con el suelo de malla.
+    - Plugins de Gazebo Classic sustituidos por sistemas de Gazebo Harmonic (ver tracer2_gazebo.xacro).
+    - Sin cámara en esta capa (el original la tenía en camera.xacro).
+    - Frecuencia del LiDAR configurable (argumento lidar_hz, 10 Hz por defecto; el original usaba 40).
+  Cinemática (del original): ruedas motrices de radio 0.0625 m; separación entre centros de rueda 0.335 m
+  (articulaciones en y = +-0.13 y centro de cada rueda desplazado 0.0375 m hacia fuera). base_link con origen en el suelo.
+-->
+<robot name="tracer2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Frecuencia del LiDAR (Hz). El original usaba 40; por defecto 10: con el servidor renderizando por software,
+       cada lectura renderiza el escenario completo y 40 Hz deja la simulación al ~16 % del tiempo real. -->
+  <xacro:arg name="lidar_hz" default="10"/>
+
+  <xacro:property name="mallas" value="file://$(find tracer2_description)/meshes"/>
+  <xacro:property name="color_rueda" value="0.79216 0.81961 0.93333 1"/>
+
+  <xacro:include filename="$(find tracer2_description)/urdf/tracer2_sensores.xacro"/>
+  <xacro:include filename="$(find tracer2_description)/urdf/tracer2_gazebo.xacro"/>
+
+  <!-- ===== Chasis ===== -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.00032354 0 0.092792" rpy="0 0 0"/>
+      <mass value="42.875"/>
+      <inertia ixx="1.1428" ixy="0" ixz="0.0007936" iyy="1.508" iyz="0" izz="2.5405"/>
+    </inertial>
+    <visual>
+      <geometry><mesh filename="${mallas}/base_link.STL"/></geometry>
+      <material name="tracer2_blanco"><color rgba="1 1 1 1"/></material>
+    </visual>
+    <!-- Caja envolvente de base_link.STL: x +-0.3425, y +-0.285, z 0.03..0.175 -->
+    <collision>
+      <origin xyz="0 0 0.1025" rpy="0 0 0"/>
+      <geometry><box size="0.685 0.57 0.145"/></geometry>
+    </collision>
+  </link>
+
+  <!-- base_footprint: proyección de base_link en el suelo (en el original, TF estática base_link -> base_footprint). -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===== Ruedas motrices ===== -->
+  <xacro:macro name="rueda" params="nombre y signo">
+    <link name="rueda_${nombre}_Link">
+      <inertial>
+        <origin xyz="0 0 ${signo*0.0375}" rpy="0 0 0"/>
+        <mass value="0.85779"/>
+        <inertia ixx="0.0011549" ixy="0" ixz="0" iyy="0.0011549" iyz="0" izz="0.0015842"/>
+      </inertial>
+      <visual>
+        <geometry><mesh filename="${mallas}/rueda_${nombre}_Link.STL"/></geometry>
+        <material name="tracer2_rueda"><color rgba="${color_rueda}"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${signo*0.0375}" rpy="0 0 0"/>
+        <geometry><cylinder radius="0.0625" length="0.075"/></geometry>
+      </collision>
+    </link>
+    <joint name="rueda_${nombre}_joint" type="continuous">
+      <origin xyz="0 ${y} 0.0625" rpy="-1.5708 0 0"/>
+      <parent link="base_link"/>
+      <child link="rueda_${nombre}_Link"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+  </xacro:macro>
+  <xacro:rueda nombre="izquierda" y="0.13" signo="1"/>
+  <xacro:rueda nombre="derecha" y="-0.13" signo="-1"/>
+
+  <!-- ===== Apoyos (ruedas locas) ===== -->
+  <!-- Mismas articulaciones que el original; collision con esfera de 0.0295 m sin fricción (ver tracer2_gazebo.xacro). -->
+  <xacro:macro name="apoyo" params="nombre x y rpy signo">
+    <link name="apoyo_${nombre}_Link">
+      <inertial>
+        <origin xyz="0 0 ${signo*0.025}" rpy="0 0 0"/>
+        <mass value="0.08509"/>
+        <inertia ixx="2.4033E-05" ixy="0" ixz="0" iyy="2.4033E-05" iyz="0" izz="3.0772E-05"/>
+      </inertial>
+      <visual>
+        <geometry><mesh filename="${mallas}/apoyo_${nombre}_Link.STL"/></geometry>
+        <material name="tracer2_rueda"><color rgba="${color_rueda}"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${signo*0.025}" rpy="0 0 0"/>
+        <geometry><sphere radius="0.0295"/></geometry>
+      </collision>
+    </link>
+    <joint name="apoyo_${nombre}_joint" type="continuous">
+      <origin xyz="${x} ${y} 0.03" rpy="${rpy}"/>
+      <parent link="base_link"/>
+      <child link="apoyo_${nombre}_Link"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+  </xacro:macro>
+  <xacro:apoyo nombre="izquierdo_delantero" x="0.21" y="0.1425" rpy="1.5708 0 0" signo="-1"/>
+  <xacro:apoyo nombre="izquierdo_trasero" x="-0.21" y="0.1425" rpy="1.5708 1.2815 0" signo="-1"/>
+  <xacro:apoyo nombre="derecho_delantero" x="0.21" y="-0.1425" rpy="1.5708 0 0" signo="1"/>
+  <xacro:apoyo nombre="derecho_trasero" x="-0.21" y="-0.1425" rpy="1.5708 -0.040768 0" signo="1"/>
+
+</robot>

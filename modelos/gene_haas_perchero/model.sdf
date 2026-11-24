@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Perchero de pie (modelo propio, primitivas). Medidas APROXIMADAS: base redonda de 0.40 m de diámetro y 0.03 m de alto,
+       poste de 0.045 m de diámetro hasta 1.78 m, pomo y 4 ganchos en diagonal (alcance horizontal 0.13 m) a 1.66-1.80 m.
+       Origen = centro de la base en el suelo. Collision ajustada a la base y al poste (los ganchos no tienen collision);
+       a la altura del LiDAR (0.20 m) solo es visible el poste. -->
+  <model name="gene_haas_perchero">
+    <static>true</static>
+    <link name="perchero">
+      <visual name="base">
+        <pose>0 0 0.015 0 0 0</pose>
+        <geometry><cylinder><radius>0.2</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <collision name="base_collision">
+        <pose>0 0 0.015 0 0 0</pose>
+        <geometry><cylinder><radius>0.2</radius><length>0.03</length></cylinder></geometry>
+      </collision>
+      <visual name="poste">
+        <pose>0 0 0.905 0 0 0</pose>
+        <geometry><cylinder><radius>0.0225</radius><length>1.75</length></cylinder></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <collision name="poste_collision">
+        <pose>0 0 0.905 0 0 0</pose>
+        <geometry><cylinder><radius>0.0225</radius><length>1.75</length></cylinder></geometry>
+      </collision>
+      <visual name="pomo">
+        <pose>0 0 1.80 0 0 0</pose>
+        <geometry><sphere><radius>0.03</radius></sphere></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="gancho_1">
+        <pose>0.0463 0.0463 1.7059 0 0.9599 0.7854</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.16</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_1_punta">
+        <pose>0.0927 0.0927 1.7768 0 0 0</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_2">
+        <pose>-0.0463 0.0463 1.7059 0 0.9599 2.3562</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.16</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_2_punta">
+        <pose>-0.0927 0.0927 1.7768 0 0 0</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_3">
+        <pose>-0.0463 -0.0463 1.7059 0 0.9599 3.9270</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.16</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_3_punta">
+        <pose>-0.0927 -0.0927 1.7768 0 0 0</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_4">
+        <pose>0.0463 -0.0463 1.7059 0 0.9599 5.4978</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.16</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+      <visual name="gancho_4_punta">
+        <pose>0.0927 -0.0927 1.7768 0 0 0</pose>
+        <geometry><cylinder><radius>0.008</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>0.20 0.20 0.22 1</ambient><diffuse>0.20 0.20 0.22 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

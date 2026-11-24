@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 0.700 x 1.700 x 0.830 m): no necesita offset. -->
+  <model name="gene_haas_puesto_1_mesas">
+    <static>true</static>
+    <link name="base">
+      <!-- Collision: 4 patas + tablero, igual que la geometría visible (herramientas/ajustar_colisiones_bajas.py) -->
+      <collision name="collision_pata_1">
+        <pose>0.3100 0.6400 0.3750 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0800 0.0800 0.7500</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_pata_2">
+        <pose>0.3100 -0.6400 0.3750 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0800 0.0800 0.7500</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_pata_3">
+        <pose>-0.3100 0.6400 0.3750 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0800 0.0800 0.7500</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_pata_4">
+        <pose>-0.3100 -0.6400 0.3750 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0800 0.0800 0.7500</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_tablero">
+        <pose>0.0000 0.0000 0.7900 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.7000 1.7000 0.0800</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_puesto_1_mesas/meshes/01_02_Bancos_LEPI.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.55 0.40 0.25 1</ambient>
+          <diffuse>0.55 0.40 0.25 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

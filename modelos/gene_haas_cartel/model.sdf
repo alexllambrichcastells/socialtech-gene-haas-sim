@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Cartel decorativo "GENE HAAS CENTER / for Advanced Manufacturing" (modelo propio, ligero, estático, SIN collision).
+       Medidas APROXIMADAS: panel 3.66 x 0.851 m (proporción 4.3:1 de la foto rectificada) y 0.02 m de grosor; halo blanco
+       difuminado en una franja de 0.10 m alrededor del panel (3.86 x 1.051 m). Tamaño = el mayor que cabe en el tramo libre
+       de la pared oeste (objetivo 4.80 x 1.12 m no cabe en ninguna de las dos ubicaciones).
+       Origen = punto de la cara interior de la pared, a la altura del centro del panel; +x local = normal de la pared hacia la sala
+       (hacia donde mira el cartel); y local = a lo largo de la pared. Separación anti-parpadeo: halo a 4 mm, panel a 12 mm de la pared.
+       Texturas en materials/textures, obtenidas de una foto del cartel del laboratorio. -->
+  <model name="gene_haas_cartel">
+    <static>true</static>
+    <link name="cartel">
+      <visual name="halo">
+        <pose>0.004 0 0 0 0 0</pose>
+        <geometry><box><size>0.001 3.8600 1.0510</size></box></geometry>
+        <material>
+          <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>1 1 1 1</emissive>
+          <pbr><metal><albedo_map>model://gene_haas_cartel/materials/textures/halo_cartel.png</albedo_map></metal></pbr>
+        </material>
+      </visual>
+      <visual name="panel">
+        <pose>0.022 0 0 0 0 0</pose>
+        <geometry><box><size>0.02 3.6600 0.8510</size></box></geometry>
+        <material>
+          <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><emissive>0.35 0.35 0.35 1</emissive>
+          <pbr><metal><albedo_map>model://gene_haas_cartel/materials/textures/cartel_gene_haas.png</albedo_map></metal></pbr>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

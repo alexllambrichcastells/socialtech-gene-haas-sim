@@ -1,0 +1,4 @@
+# Artefactos de colcon (no se versionan)
+build/
+install/
+log/

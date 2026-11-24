@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Silla (modelo propio, primitivas). Medidas APROXIMADAS: asiento 0.45 x 0.45 m a 0.42-0.47 m, respaldo 0.42 m de ancho
+       hasta 0.86 m, patas de 12 mm de radio. Origen = centro de la silla en el suelo; +x local = hacia donde mira quien se sienta
+       (el respaldo queda en -x). Collision = las mismas piezas (patas incluidas: el LiDAR a 0.20 m solo ve las patas). -->
+  <model name="gene_haas_silla">
+    <static>true</static>
+    <link name="silla">
+      <visual name="asiento">
+        <pose>0 0 0.445 0 0 0</pose>
+        <geometry><box><size>0.45 0.45 0.05</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <collision name="asiento_collision">
+        <pose>0 0 0.445 0 0 0</pose>
+        <geometry><box><size>0.45 0.45 0.05</size></box></geometry>
+      </collision>
+      <visual name="respaldo">
+        <pose>-0.205 0 0.68 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.36</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <collision name="respaldo_collision">
+        <pose>-0.205 0 0.68 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.36</size></box></geometry>
+      </collision>
+      <visual name="pata_1">
+        <pose>0.19 0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="pata_1_collision">
+        <pose>0.19 0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+      </collision>
+      <visual name="pata_2">
+        <pose>0.19 -0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="pata_2_collision">
+        <pose>0.19 -0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+      </collision>
+      <visual name="pata_3">
+        <pose>-0.19 0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="pata_3_collision">
+        <pose>-0.19 0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+      </collision>
+      <visual name="pata_4">
+        <pose>-0.19 -0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="pata_4_collision">
+        <pose>-0.19 -0.19 0.21 0 0 0</pose>
+        <geometry><cylinder><radius>0.012</radius><length>0.42</length></cylinder></geometry>
+      </collision>
+      <visual name="poste_respaldo_1">
+        <pose>-0.205 0.19 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>0.01</radius><length>0.26</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="poste_respaldo_1_collision">
+        <pose>-0.205 0.19 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>0.01</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+      <visual name="poste_respaldo_2">
+        <pose>-0.205 -0.19 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>0.01</radius><length>0.26</length></cylinder></geometry>
+        <material><ambient>0.55 0.56 0.58 1</ambient><diffuse>0.55 0.56 0.58 1</diffuse><specular>0.6 0.6 0.6 1</specular></material>
+      </visual>
+      <collision name="poste_respaldo_2_collision">
+        <pose>-0.205 -0.19 0.6 0 0 0</pose>
+        <geometry><cylinder><radius>0.01</radius><length>0.26</length></cylinder></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

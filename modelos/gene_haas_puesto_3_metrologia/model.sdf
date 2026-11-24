@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 0.989 x 0.978 x 2.096 m): no necesita offset. -->
+  <model name="gene_haas_puesto_3_metrologia">
+    <static>true</static>
+    <link name="base">
+      <!-- Collision: baja (z 0-0.3) ajustada a lo visible a la altura del robot; alta = caja envolvente (herramientas/ajustar_colisiones_bajas.py) -->
+      <collision name="collision_baja">
+        <pose>0.0549 -0.0105 0.1500 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.8789 0.9575 0.3000</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_alta">
+        <pose>0.0000 0.0000 1.1978 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.9886 0.9785 1.7956</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_puesto_3_metrologia/meshes/05_Metrologia_HMM430.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.20 0.35 0.60 1</ambient>
+          <diffuse>0.20 0.35 0.60 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

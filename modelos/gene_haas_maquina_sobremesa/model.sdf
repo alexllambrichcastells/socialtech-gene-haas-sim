@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Máquina compacta de sobremesa (modelo propio, primitivas). Medidas APROXIMADAS: 0.60 m de ancho (y local) x 0.30 m de fondo x 0.38 m. -->
+  <!-- Origen = centro de la base; se apoya sobre el banco (pose z = 0.90). Frente (ventana y panel) = +x local. Collision = base + carcasa. -->
+  <model name="gene_haas_maquina_sobremesa">
+    <static>true</static>
+    <link name="cuerpo">
+      <visual name="base">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.3 0.6 0.08</size></box></geometry>
+        <material><ambient>0.45 0.46 0.48 1</ambient><diffuse>0.45 0.46 0.48 1</diffuse></material>
+      </visual>
+      <collision name="base_collision">
+        <pose>0 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.3 0.6 0.08</size></box></geometry>
+      </collision>
+      <visual name="carcasa">
+        <pose>0 0 0.23 0 0 0</pose>
+        <geometry><box><size>0.3 0.6 0.3</size></box></geometry>
+        <material><ambient>0.15 0.15 0.17 1</ambient><diffuse>0.15 0.15 0.17 1</diffuse></material>
+      </visual>
+      <collision name="carcasa_collision">
+        <pose>0 0 0.23 0 0 0</pose>
+        <geometry><box><size>0.3 0.6 0.3</size></box></geometry>
+      </collision>
+      <visual name="ventana">
+        <pose>0.1515 -0.06 0.24 0 0 0</pose>
+        <geometry><box><size>0.003 0.36 0.18</size></box></geometry>
+        <material><ambient>0.05 0.08 0.12 1</ambient><diffuse>0.05 0.08 0.12 1</diffuse></material>
+        <transparency>0.3</transparency>
+      </visual>
+      <visual name="panel_control">
+        <pose>0.155 0.215 0.23 0 0 0</pose>
+        <geometry><box><size>0.01 0.13 0.2</size></box></geometry>
+        <material><ambient>0.62 0.63 0.65 1</ambient><diffuse>0.62 0.63 0.65 1</diffuse></material>
+      </visual>
+      <visual name="panel_pantalla">
+        <pose>0.1615 0.215 0.28 0 0 0</pose>
+        <geometry><box><size>0.003 0.09 0.06</size></box></geometry>
+        <material><ambient>0.35 0.65 0.90 1</ambient><diffuse>0.35 0.65 0.90 1</diffuse></material>
+      </visual>
+      <visual name="seta_emergencia">
+        <pose>0.17 0.215 0.17 0 1.5708 0</pose>
+        <geometry><cylinder><radius>0.018</radius><length>0.02</length></cylinder></geometry>
+        <material><ambient>0.85 0.05 0.05 1</ambient><diffuse>0.85 0.05 0.05 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Banco de taller móvil (carro), versión compacta - modelo propio, solo primitivas. Medidas APROXIMADAS: 1.00 x 0.45 m
+       (tablero), 0.92 m de alto de trabajo, ruedas de 0.05 m de radio; el tornillo de banco vuela ~0.07 m sobre el extremo +x.
+       Estructura crema, tablero gris, cajonera y armario azules (frente = +y local), tornillo de banco rojo en el extremo +x local,
+       caja de herramientas, martillo y piezas encima. Origen = centro de la huella en el suelo. Estático (ruedas solo visuales).
+       Collision simplificada: caja del cuerpo de 0.10 a 0.92 m (el LiDAR a 0.20 m ve armarios y postes) + tornillo de banco. -->
+  <model name="gene_haas_carro_taller">
+    <static>true</static>
+    <link name="carro">
+      <visual name="rueda_1">
+        <pose>0.42 0.16 0.05 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.05</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.10 0.10 0.10 1</ambient><diffuse>0.10 0.10 0.10 1</diffuse></material>
+      </visual>
+      <visual name="horquilla_1">
+        <pose>0.42 0.16 0.115 0 0 0</pose>
+        <geometry><box><size>0.05 0.05 0.03</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="rueda_2">
+        <pose>0.42 -0.16 0.05 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.05</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.10 0.10 0.10 1</ambient><diffuse>0.10 0.10 0.10 1</diffuse></material>
+      </visual>
+      <visual name="horquilla_2">
+        <pose>0.42 -0.16 0.115 0 0 0</pose>
+        <geometry><box><size>0.05 0.05 0.03</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="rueda_3">
+        <pose>-0.42 0.16 0.05 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.05</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.10 0.10 0.10 1</ambient><diffuse>0.10 0.10 0.10 1</diffuse></material>
+      </visual>
+      <visual name="horquilla_3">
+        <pose>-0.42 0.16 0.115 0 0 0</pose>
+        <geometry><box><size>0.05 0.05 0.03</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="rueda_4">
+        <pose>-0.42 -0.16 0.05 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.05</radius><length>0.03</length></cylinder></geometry>
+        <material><ambient>0.10 0.10 0.10 1</ambient><diffuse>0.10 0.10 0.10 1</diffuse></material>
+      </visual>
+      <visual name="horquilla_4">
+        <pose>-0.42 -0.16 0.115 0 0 0</pose>
+        <geometry><box><size>0.05 0.05 0.03</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="poste_1">
+        <pose>0.48 0.20500000000000002 0.505 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.79</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="poste_2">
+        <pose>0.48 -0.20500000000000002 0.505 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.79</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="poste_3">
+        <pose>-0.48 0.20500000000000002 0.505 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.79</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="poste_4">
+        <pose>-0.48 -0.20500000000000002 0.505 0 0 0</pose>
+        <geometry><box><size>0.04 0.04 0.79</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="larguero_inferior_1">
+        <pose>0 0.20500000000000002 0.145 0 0 0</pose>
+        <geometry><box><size>0.9199999999999999 0.03 0.03</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="larguero_superior_1">
+        <pose>0 0.20500000000000002 0.865 0 0 0</pose>
+        <geometry><box><size>0.9199999999999999 0.03 0.04</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="larguero_inferior_2">
+        <pose>0 -0.20500000000000002 0.145 0 0 0</pose>
+        <geometry><box><size>0.9199999999999999 0.03 0.03</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="larguero_superior_2">
+        <pose>0 -0.20500000000000002 0.865 0 0 0</pose>
+        <geometry><box><size>0.9199999999999999 0.03 0.04</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="bandeja_inferior">
+        <pose>0 0 0.155 0 0 0</pose>
+        <geometry><box><size>0.9199999999999999 0.37000000000000005 0.02</size></box></geometry>
+        <material><ambient>0.82 0.80 0.72 1</ambient><diffuse>0.82 0.80 0.72 1</diffuse></material>
+      </visual>
+      <visual name="cajonera">
+        <pose>0.225 0 0.47 0 0 0</pose>
+        <geometry><box><size>0.43 0.37 0.6</size></box></geometry>
+        <material><ambient>0.12 0.30 0.65 1</ambient><diffuse>0.12 0.30 0.65 1</diffuse></material>
+      </visual>
+      <visual name="cajon_junta_1">
+        <pose>0.225 0.1865 0.64 0 0 0</pose>
+        <geometry><box><size>0.41 0.003 0.006</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="cajon_tirador_1">
+        <pose>0.225 0.1900 0.70 0 0 0</pose>
+        <geometry><box><size>0.12 0.01 0.015</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="cajon_junta_2">
+        <pose>0.225 0.1865 0.52 0 0 0</pose>
+        <geometry><box><size>0.41 0.003 0.006</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="cajon_tirador_2">
+        <pose>0.225 0.1900 0.58 0 0 0</pose>
+        <geometry><box><size>0.12 0.01 0.015</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="cajon_junta_3">
+        <pose>0.225 0.1865 0.40 0 0 0</pose>
+        <geometry><box><size>0.41 0.003 0.006</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="cajon_tirador_3">
+        <pose>0.225 0.1900 0.46 0 0 0</pose>
+        <geometry><box><size>0.12 0.01 0.015</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="cajon_junta_4">
+        <pose>0.225 0.1865 0.28 0 0 0</pose>
+        <geometry><box><size>0.41 0.003 0.006</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="cajon_tirador_4">
+        <pose>0.225 0.1900 0.34 0 0 0</pose>
+        <geometry><box><size>0.12 0.01 0.015</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="armario">
+        <pose>-0.225 0 0.47 0 0 0</pose>
+        <geometry><box><size>0.43 0.37 0.6</size></box></geometry>
+        <material><ambient>0.12 0.30 0.65 1</ambient><diffuse>0.12 0.30 0.65 1</diffuse></material>
+      </visual>
+      <visual name="armario_junta">
+        <pose>-0.225 0.1865 0.47 0 0 0</pose>
+        <geometry><box><size>0.003 0.003 0.58</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="armario_tirador_1">
+        <pose>-0.25 0.1900 0.62 0 0 0</pose>
+        <geometry><box><size>0.012 0.01 0.1</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="armario_tirador_2">
+        <pose>-0.2 0.1900 0.62 0 0 0</pose>
+        <geometry><box><size>0.012 0.01 0.1</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="tablero">
+        <pose>0 0 0.9 0 0 0</pose>
+        <geometry><box><size>1.0 0.45 0.04</size></box></geometry>
+        <material><ambient>0.45 0.46 0.48 1</ambient><diffuse>0.45 0.46 0.48 1</diffuse></material>
+      </visual>
+      <visual name="tornillo_base">
+        <pose>0.40 0 0.9500000000000001 0 0 0</pose>
+        <geometry><box><size>0.14 0.15 0.06</size></box></geometry>
+        <material><ambient>0.75 0.08 0.06 1</ambient><diffuse>0.75 0.08 0.06 1</diffuse></material>
+      </visual>
+      <visual name="tornillo_mordaza_fija">
+        <pose>0.35 0 1.01 0 0 0</pose>
+        <geometry><box><size>0.035 0.14 0.06</size></box></geometry>
+        <material><ambient>0.75 0.08 0.06 1</ambient><diffuse>0.75 0.08 0.06 1</diffuse></material>
+      </visual>
+      <visual name="tornillo_mordaza_movil">
+        <pose>0.445 0 1.01 0 0 0</pose>
+        <geometry><box><size>0.035 0.14 0.06</size></box></geometry>
+        <material><ambient>0.75 0.08 0.06 1</ambient><diffuse>0.75 0.08 0.06 1</diffuse></material>
+      </visual>
+      <visual name="tornillo_husillo">
+        <pose>0.51 0 1.0 0 1.5708 0</pose>
+        <geometry><cylinder><radius>0.007</radius><length>0.12</length></cylinder></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="tornillo_manivela">
+        <pose>0.565 0 1.0 1.5708 0 0</pose>
+        <geometry><cylinder><radius>0.005</radius><length>0.12</length></cylinder></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="caja_herramientas">
+        <pose>-0.27 0.05 0.9700000000000001 0 0 0</pose>
+        <geometry><box><size>0.28 0.14 0.1</size></box></geometry>
+        <material><ambient>0.70 0.10 0.08 1</ambient><diffuse>0.70 0.10 0.08 1</diffuse></material>
+      </visual>
+      <visual name="caja_herramientas_asa">
+        <pose>-0.27 0.05 1.0350000000000001 0 1.5708 0</pose>
+        <geometry><cylinder><radius>0.007</radius><length>0.16</length></cylinder></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="martillo_mango">
+        <pose>0.04 -0.11 0.932 0 1.5708 0.4</pose>
+        <geometry><cylinder><radius>0.011</radius><length>0.24</length></cylinder></geometry>
+        <material><ambient>0.55 0.35 0.18 1</ambient><diffuse>0.55 0.35 0.18 1</diffuse></material>
+      </visual>
+      <visual name="martillo_cabeza">
+        <pose>0.15 -0.064 0.935 0 0 0.4</pose>
+        <geometry><box><size>0.035 0.1 0.03</size></box></geometry>
+        <material><ambient>0.08 0.08 0.09 1</ambient><diffuse>0.08 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="pieza_1">
+        <pose>0.13 0.12 0.9450000000000001 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <visual name="pieza_2">
+        <pose>0.05 0.14 0.935 0 0 0</pose>
+        <geometry><box><size>0.07 0.045 0.03</size></box></geometry>
+        <material><ambient>0.60 0.61 0.63 1</ambient><diffuse>0.60 0.61 0.63 1</diffuse></material>
+      </visual>
+      <collision name="cuerpo_collision">
+        <pose>0 0 0.51 0 0 0</pose>
+        <geometry><box><size>1.0 0.45 0.82</size></box></geometry>
+      </collision>
+      <collision name="tornillo_collision">
+        <pose>0.43 0 0.98 0 0 0</pose>
+        <geometry><box><size>0.17 0.15 0.12</size></box></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

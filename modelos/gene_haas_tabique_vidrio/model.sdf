@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 0.010 x 5.261 x 2.500 m): no necesita offset.
+       Incluye una puerta de 1.20 x 2.00 m (y local -1.9995..-0.7995). -->
+  <model name="gene_haas_tabique_vidrio">
+    <static>true</static>
+    <link name="base">
+      <!-- Collision simplificada en 3 cajas para dejar libre la puerta de la malla
+           (hueco de 1.20 m x 2.00 m en y local -1.9995..-0.7995). -->
+      <collision name="collision_pano_sur">
+        <pose>0 -2.315 1.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.010 0.631 2.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_pano_norte">
+        <pose>0 0.9155 1.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.010 3.43 2.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_dintel">
+        <pose>0 -1.3995 2.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.010 1.2 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_tabique_vidrio/meshes/Tabique.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.60 0.80 0.90 1</ambient>
+          <diffuse>0.60 0.80 0.90 1</diffuse>
+        </material>
+        <transparency>0.6</transparency>
+      </visual>
+    </link>
+  </model>
+</sdf>

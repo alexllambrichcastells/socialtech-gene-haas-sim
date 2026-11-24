@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Puesto de ordenador (modelo propio, primitivas). Medidas APROXIMADAS: monitor 0.55 x 0.33 m, teclado 0.44 x 0.15 m,
+       torre 0.42 x 0.18 x 0.40 m. Origen = borde de la mesa a nivel del suelo; +x local hacia dentro de la mesa.
+       La persona se sienta en -x: el monitor y el teclado miran hacia ella. Huella sobre la mesa: x 0.095..0.66, y -0.33..0.48. -->
+  <model name="gene_haas_puesto_ordenador">
+    <static>true</static>
+    <link name="puesto">
+      <visual name="monitor_marco">
+        <pose>0.4500 0.000 1.1150 0 0 0</pose>
+        <geometry><box><size>0.03 0.55 0.33</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <collision name="monitor_marco_collision">
+        <pose>0.4500 0.000 1.1150 0 0 0</pose>
+        <geometry><box><size>0.03 0.55 0.33</size></box></geometry>
+      </collision>
+      <visual name="monitor_pantalla">
+        <pose>0.4335 0.000 1.1150 0 0 0</pose>
+        <geometry><box><size>0.003 0.51 0.29</size></box></geometry>
+        <material><ambient>0.06 0.10 0.18 1</ambient><diffuse>0.06 0.10 0.18 1</diffuse></material>
+      </visual>
+      <visual name="monitor_cuello">
+        <pose>0.4700 0.000 0.8975 0 0 0</pose>
+        <geometry><box><size>0.04 0.05 0.105</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <visual name="monitor_pie">
+        <pose>0.4500 0.000 0.8375 0 0 0</pose>
+        <geometry><box><size>0.15 0.2 0.015</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <visual name="teclado">
+        <pose>0.1700 0.000 0.8425 0 0 0</pose>
+        <geometry><box><size>0.15 0.44 0.025</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <visual name="raton">
+        <pose>0.1700 -0.300 0.8450 0 0 0</pose>
+        <geometry><box><size>0.1 0.06 0.03</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <visual name="torre">
+        <pose>0.4500 0.390 1.0300 0 0 0</pose>
+        <geometry><box><size>0.42 0.18 0.4</size></box></geometry>
+        <material><ambient>0.04 0.04 0.045 1</ambient><diffuse>0.04 0.04 0.045 1</diffuse></material>
+      </visual>
+      <collision name="torre_collision">
+        <pose>0.4500 0.390 1.0300 0 0 0</pose>
+        <geometry><box><size>0.42 0.18 0.4</size></box></geometry>
+      </collision>
+      <visual name="torre_frontal">
+        <pose>0.2385 0.390 1.0300 0 0 0</pose>
+        <geometry><box><size>0.003 0.14 0.36</size></box></geometry>
+        <material><ambient>0.12 0.12 0.13 1</ambient><diffuse>0.12 0.12 0.13 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>

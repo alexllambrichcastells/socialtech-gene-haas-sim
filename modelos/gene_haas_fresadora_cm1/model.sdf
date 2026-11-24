@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Malla centrada en XY con la base en z=0 (bbox 1.880 x 1.350 x 2.164 m): no necesita offset. -->
+  <model name="gene_haas_fresadora_cm1">
+    <static>true</static>
+    <link name="base">
+      <!-- Collision: baja (z 0-0.3) ajustada a lo visible a la altura del robot; alta = caja envolvente (herramientas/ajustar_colisiones_bajas.py) -->
+      <collision name="collision_baja">
+        <pose>0.0801 0.2063 0.1500 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.2312 0.9375 0.3000</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_alta">
+        <pose>0.0000 0.0000 1.2319 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.8801 1.3501 1.8639</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_fresadora_cm1/meshes/07_Fresadora_CM1.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.70 0.55 0.15 1</ambient>
+          <diffuse>0.70 0.55 0.15 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
