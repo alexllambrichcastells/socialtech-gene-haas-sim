@@ -19,7 +19,14 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     xacro_robot = PathJoinSubstitution([FindPackageShare('tracer2_description'), 'urdf', 'tracer2.urdf.xacro'])
     puente = PathJoinSubstitution([FindPackageShare('gene_haas_bringup'), 'config', 'puente_ros_gz.yaml'])
-    descripcion = ParameterValue(Command(['xacro ', xacro_robot, ' lidar_hz:=', LaunchConfiguration('lidar_hz')]), value_type=str)
+    # Ruta entre comillas: Command separa la orden por espacios y las rutas con espacios llegaban a xacro partidas.
+    descripcion = ParameterValue(
+        Command([
+            'xacro "', xacro_robot,
+            '" lidar_hz:=', LaunchConfiguration('lidar_hz'),
+        ]),
+        value_type=str,
+    )
     sim_time = {'use_sim_time': True}
 
     robot_state_publisher = Node(
