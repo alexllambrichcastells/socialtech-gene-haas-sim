@@ -11,8 +11,9 @@ Método (la malla original model://gene_haas_env/meshes/Sotano.dae no se modific
         células, que tenían una puerta, un paso ancho y otra puerta;
       * la sala de células se cierra con dos paredes de 1 cm continuas, sin huecos, sobre las mismas caras interiores
         (sur y = -0.338, este x = 11.809), unidas a la pared este de la sala de máquinas y a la pared norte;
-      * el suelo (z = 0.01) se triangula de nuevo con el contorno resultante, sin el anexo;
-      * los pilares de la sala de máquinas se conservan tal cual.
+      * el suelo (z = 0.01) se triangula de nuevo con el contorno resultante, sin el anexo.
+  - meshes/Pilares.dae: los tres pilares de la sala de máquinas, con los mismos triángulos de Sotano.dae (misma geometría y
+    collision). Van en una malla aparte para que solo su visual sea rojo.
   - Cajas con visual y collision idénticas:
       * relleno_ventana_*: cierra la parte baja de cada ventana de la pared sur (z 1.00 -> VENTANA_Z0) en la cáscara de 1 cm.
       * recrecido_*: cajas pegadas a la cara EXTERIOR de cada pared del contorno, hacia fuera, hasta un grosor total ESPESOR,
@@ -67,6 +68,11 @@ CERR_EXT = [(3.8815, -0.348), (11.8185, -0.348), (11.8185, 4.925)]
 SUELO_INT = [(-11.8077, -4.700), (3.8715, -4.700), (3.8715, -0.338), (11.8085, -0.338), (11.8085, 4.915), (-11.1092, 4.915)]
 SUELO_EXT = [(-11.8185, -4.710), (3.8815, -4.710), (3.8815, -0.348), (11.8185, -0.348), (11.8185, 4.925), (-11.1185, 4.925)]
 SUELO_Z_INT, SUELO_Z_EXT = 0.01, 0.0
+# Pilares de la sala de máquinas en Sotano.dae (x0, x1, y0, y1): 0.15 x 0.15 m, z 0.01 - 2.71.
+PILARES = [(-8.4875, -8.3375, -1.469, -1.319), (-4.3305, -4.1805, -1.471, -1.321), (-0.2285, -0.0785, -1.461, -1.311)]
+# Rojo industrial mate, solo para el visual de los pilares.
+MATERIAL_PILAR = ("<ambient>0.55 0.07 0.06 1</ambient><diffuse>0.62 0.08 0.07 1</diffuse>"
+                  "<specular>0.05 0.05 0.05 1</specular>")
 
 
 def coord_eje(p, d):
@@ -169,6 +175,12 @@ def en_sala_celulas_o_anexo(p):
     return p[0] > 3.9 and p[1] < 4.9
 
 
+def es_pilar(tri):
+    """Cara de un pilar: sus tres vértices en la huella del MISMO pilar (no las del suelo que unen dos pilares)."""
+    return any(all(x0 - 1e-3 <= p[0] <= x1 + 1e-3 and y0 - 1e-3 <= p[1] <= y1 + 1e-3 for p in tri[0]) and
+               not es_suelo(tri) for x0, x1, y0, y1 in PILARES)
+
+
 def es_suelo(tri):
     (pts, n) = tri
     return abs(n[2]) > 0.9 and all(abs(p[2] - SUELO_Z_INT) < 1e-4 or abs(p[2] - SUELO_Z_EXT) < 1e-4 for p in pts)
@@ -176,7 +188,8 @@ def es_suelo(tri):
 
 def malla_cerrada(tris_originales):
     """Sotano.dae sin el anexo ni las paredes sur/este de la sala de células, con el cerramiento continuo y el suelo nuevo."""
-    tris = [t for t in tris_originales if not es_suelo(t) and not any(en_sala_celulas_o_anexo(p) for p in t[0])]
+    tris = [t for t in tris_originales
+            if not es_suelo(t) and not es_pilar(t) and not any(en_sala_celulas_o_anexo(p) for p in t[0])]
     (cx, cy), (dx, dy), (ex, ey) = CERR_INT
     (cx2, cy2), (dx2, dy2), (ex2, ey2) = CERR_EXT
     zi, ze = SUELO_Z_INT, SUELO_Z_EXT
@@ -237,6 +250,7 @@ def main():
     destino.mkdir(parents=True, exist_ok=True)
     originales = leer_dae(raiz / 'modelos' / 'gene_haas_env' / 'meshes' / 'Sotano.dae')
     n_malla = escribir_dae(destino / 'meshes' / 'Sotano_cerrado.dae', 'Sotano_cerrado', malla_cerrada(originales))
+    n_pilares = escribir_dae(destino / 'meshes' / 'Pilares.dae', 'Pilares', [t for t in originales if es_pilar(t)])
     L = ['<?xml version="1.0" ?>', '<sdf version="1.9">',
          '  <!-- GENERADO por herramientas/generar_gene_haas_env_grueso.py: no editar a mano, cambiar los parámetros del script.',
          f'       Sótano de Gene Haas con paredes de ~{ESPESOR:.2f} m (recrecidas hacia FUERA) y ventanas altas y estrechas',
@@ -250,6 +264,14 @@ def main():
          '      </collision>',
          '      <visual name="sotano_visual">',
          '        <geometry><mesh><uri>model://gene_haas_env_grueso/meshes/Sotano_cerrado.dae</uri></mesh></geometry>',
+         '      </visual>',
+         '      <!-- Pilares de la sala de máquinas: misma geometría que en Sotano.dae; visual rojo y collision sin cambios. -->',
+         '      <collision name="pilares_collision">',
+         '        <geometry><mesh><uri>model://gene_haas_env_grueso/meshes/Pilares.dae</uri></mesh></geometry>',
+         '      </collision>',
+         '      <visual name="pilares_visual">',
+         '        <geometry><mesh><uri>model://gene_haas_env_grueso/meshes/Pilares.dae</uri></mesh></geometry>',
+         f'        <material>{MATERIAL_PILAR}</material>',
          '      </visual>']
     for nombre, (x, y, z, yaw), (sx, sy, sz) in cajas():
         pose = f'{x:.4f} {y:.4f} {z:.4f} 0 0 {yaw:.5f}'
@@ -278,7 +300,7 @@ def main():
         f'ventanas altas y estrechas (z {VENTANA_Z0:.2f}-{VENTANA_Z1:.2f} m) y la sala de células cerrada al sur y al este. '
         'Malla derivada de Sotano.dae de gene_haas_env + cajas. '
         'Generado por herramientas/generar_gene_haas_env_grueso.py. Medidas APROXIMADAS.</description>\n</model>\n')
-    print(f'{destino / "model.sdf"}: {len(cajas())} cajas; Sotano_cerrado.dae: {n_malla} triángulos')
+    print(f'{destino / "model.sdf"}: {len(cajas())} cajas; Sotano_cerrado.dae: {n_malla} triángulos; Pilares.dae: {n_pilares}')
 
 
 if __name__ == '__main__':
