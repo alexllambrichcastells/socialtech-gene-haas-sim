@@ -35,7 +35,9 @@
     </light>
 
     <!-- Entorno: sótano con paredes de ~0.25 m recrecidas hacia fuera y ventanas altas y estrechas (z 2.10-2.50 m).
-         Generado por herramientas/generar_gene_haas_env_grueso.py; interior idéntico a Sotano.dae.
+         La sala de células está cerrada al sur y al este por paredes continuas y el anexo situado al sur se ha quitado;
+         la única comunicación con la sala de máquinas es la puerta del tabique de vidrio.
+         Generado por herramientas/generar_gene_haas_env_grueso.py; la sala de máquinas es idéntica a Sotano.dae.
          Para volver al entorno original (paredes de 1 cm, ventanas z 1.00-2.50): <uri>model://gene_haas_env</uri>. -->
     <include>
       <name>gene_haas_env</name>
