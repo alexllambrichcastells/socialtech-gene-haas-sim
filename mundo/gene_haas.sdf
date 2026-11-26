@@ -143,6 +143,14 @@
       <pose>-11.2213 -3.0478 0 0 0 -0.07252</pose>
     </include>
 
+    <!-- Armario eléctrico de la máquina 5 (metrología): a su izquierda mirándola de frente (lado sur), contra la pared oeste
+         inclinada con la trasera a 0.03 m y la cara de acceso hacia el interior; 0.10 m al sur de la envolvente de la máquina 5. -->
+    <include>
+      <name>armario_electrico</name>
+      <uri>model://gene_haas_armario_electrico</uri>
+      <pose>-11.1455 -1.1738 0 0 0 -0.07252</pose>
+    </include>
+
     <!-- Tabique de vidrio entre la sala principal y la zona de entrada (cotas 15040.7 / 7887 del plano):
          cierra el hueco del sótano en x = 3.8715..3.8815 entre el final de la pared este (y = -0.343) y la pared norte (y = 4.92). -->
     <include>

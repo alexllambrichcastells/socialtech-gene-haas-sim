@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <!-- Armario eléctrico (ArmarioElectrico_2.SLDPRT, exportado a Armario.dae): bloque de 0.75 x 0.60 x 0.78 m, base en z = 0.
+       La malla viene centrada en XY pero girada -0.072523 rad (la orientación de la pared oeste); el visual se gira +0.072523 rad
+       para que el modelo quede alineado con sus ejes: x local = 0.75 m (frente de acceso hacia +x), y local = 0.60 m.
+       En el mundo se coloca con yaw -0.07252 para apoyar la trasera (-x local) paralela a la pared oeste inclinada. -->
+  <model name="gene_haas_armario_electrico">
+    <static>true</static>
+    <link name="base">
+      <collision name="collision">
+        <pose>0 0 0.39 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.75 0.60 0.78</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0 0 0 0 0 0.072523</pose>
+        <geometry>
+          <mesh>
+            <uri>model://gene_haas_armario_electrico/meshes/Armario.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.50 0.52 0.54 1</ambient>
+          <diffuse>0.58 0.60 0.62 1</diffuse>
+          <specular>0.10 0.10 0.10 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
